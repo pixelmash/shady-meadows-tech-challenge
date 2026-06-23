@@ -1,0 +1,7 @@
+karate/target/
+
+playwright/node_modules/
+playwright/test-results/
+playwright/playwright-report/
+
+.DS_Store
