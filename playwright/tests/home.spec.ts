@@ -4,6 +4,7 @@ import { HomePage } from '../pages/home';
 
 let home: HomePage;
 
+// Helper function for booking a room with a past dates
 function getFormattedDate(daysOffset = 0) {
     const date = new Date();
     date.setDate(date.getDate() + daysOffset);

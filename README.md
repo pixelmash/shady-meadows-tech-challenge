@@ -30,7 +30,7 @@ shady-meadows-tech-challenge/
 ## Approach
 
 The goal was to build a clean, scalable test suite that goes beyond the minimum
-requirements. Both suites follow the same principles:
+requirements.
 
 - **Atomic tests** - each test is self-contained and does not rely on state
   left by a previous test. The booking feature dynamically fetches a valid
@@ -42,8 +42,7 @@ requirements. Both suites follow the same principles:
   negative scenarios (empty booking payload, past dates) and document
   discovered bugs using `test.fail()` so they are visible in reports without
   blocking the suite.
-
-  Note on the bonus task - ideally, the cross-check between the admin panel and the landing page would be performed by comparing API and UI results. For the purpose of this task, only UI comparison was used, which is not the optimal approach.
+- **Note on the bonus task** - ideally, the cross-check between the admin panel and the landing page would be performed by comparing API and UI results. For the purpose of this task, only UI comparison was used, which is not the optimal approach.
 
 ---
 
@@ -76,7 +75,7 @@ Copy the example env file and fill in the credentials:
 cp playwright/.env.example playwright/.env
 ```
 
-`.env` is filled with values according to .env.example:
+`.env` is filled with values according to .env.example.
 
 
 ### Running the tests
@@ -113,7 +112,7 @@ npx playwright show-report
 | 2 | Homepage - Navigation | "Amenities" nav link exists but has no target section on the page |
 | 3 | Homepage - Booking widget | No validation on past check-in/check-out dates - bookings can be made in the past |
 | 4 | Homepage - Footer | Footer navigation links do not scroll to their target sections |
-| 5 | Admin panel | Logging in redirects to the Rooms view instead of the "Dashboard/Inboxes" view as specified |
+| 5 | Admin panel | Logging in redirects to the "Rooms" view instead of the "Dashboard/Inboxes" view as specified |
 
 ---
 
