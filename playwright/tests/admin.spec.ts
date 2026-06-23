@@ -9,38 +9,40 @@ let homePage: HomePage;
 test.beforeEach(async ({ page }) => {
     adminPage = new AdminPage(page);
     homePage = new HomePage(page);
-
-    await page.goto(`${testData.url}/admin`);
 });
 
 test.describe('Admin Authentication & Dashboard Suite', () => {
 
-    test('should successfully log in via admin portal and verify session views', async ({ page }) => {
+    test.fail('should successfully log in via admin and verify the content', async ({ page }) => {
+        // Admin login
         await adminPage.login(
             testData.users.admin.username,
             testData.users.admin.password
         );
 
         await expect(page).toHaveURL(/admin/);
-
+        // Check for logout button
         await expect(adminPage.logoutButton()).toBeVisible();
+        // BUG #5: Navigating to admin page doesnt lead to 'Dashboard/Inboxes' view  
+        await expect(adminPage.navSectionLink('Dashboard/Inboxes')).toBeVisible();
     });
-    // still in progress
-    test('(Bonus) admin rooms panel matches public room types', async ({ page }) => {
-        // Step 1: grab first room type from public homepage
+
+    test('(Bonus) admin panel rooms matches front page rooms', async ({ page }) => {
+        // Grab the first room from the from page
         await page.goto(testData.url);
+        await expect(homePage.roomsSection()).toBeVisible();
+        await expect(homePage.roomsFirstRoom()).toBeVisible();
         const homePageRoom = await homePage.roomsFirstRoom().innerText();
 
-        // Step 2: log in to admin (already on /admin from beforeEach)
+        // Admin login
         await page.goto(`${testData.url}/admin`);
         await adminPage.login(
             testData.users.admin.username,
             testData.users.admin.password
         );
 
-        // Step 3: already on /admin/rooms after login - verify room type appears in the table
+        // Check that the room is present on the admin page
         await expect(page).toHaveURL(/admin\/rooms/);
         await expect(page.locator(`p#type${homePageRoom}`)).toBeVisible();
-
     });
 });
