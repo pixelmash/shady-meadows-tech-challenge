@@ -7,6 +7,7 @@ let adminPage: AdminPage;
 let homePage: HomePage;
 
 test.beforeEach(async ({ page }) => {
+    await page.goto(`${testData.url}/admin`);
     adminPage = new AdminPage(page);
     homePage = new HomePage(page);
 });
@@ -43,6 +44,6 @@ test.describe('Admin Authentication & Dashboard Suite', () => {
 
         // Check that the room is present on the admin page
         await expect(page).toHaveURL(/admin\/rooms/);
-        await expect(page.locator(`p#type${homePageRoom}`)).toBeVisible();
+        await expect(page.locator(`p#type${homePageRoom}`).first()).toBeVisible();
     });
 });

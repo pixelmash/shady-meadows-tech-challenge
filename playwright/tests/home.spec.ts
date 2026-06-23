@@ -25,7 +25,7 @@ test.describe('Homepage Sanity Assignment Suite', () => {
     test.fail('verify "Book this room" buttons are present for listed rooms', async () => {
         await expect(home.roomsSection()).toBeVisible();
         await expect(home.bookNowButton().first()).toBeVisible();
-        // BUG #4: Buttons say 'Book now' insted of 'Book this room'
+        // BUG #1: Buttons say 'Book now' insted of 'Book this room'
         const buttonCount = await home.bookNowButton().count();
         expect(buttonCount).toBeGreaterThan(0);
     });
@@ -35,13 +35,13 @@ test.describe('Homepage Sanity Assignment Suite', () => {
 test.describe('Test coverage for the found bugs', () => {
 
     test.fail('amenities link has target section', async ({ page }) => {
-        // BUG #1: Amenities section does not exist on the page
+        // BUG #2: Amenities section does not exist on the page
         await home.navSectionLink('Amenities').click();
         await expect(home.amenitiesSection()).toBeInViewport();
     });
 
     test.fail('booking with past dates', async ({ page }) => {
-        // BUG #2: No validation on past check in/out dates
+        // BUG #3: No validation on past check in/out dates
         await home.bookingSectionCheckIn().fill(getFormattedDate(-5));
         await home.bookingSectionCheckOut().fill(getFormattedDate(-10));
         await home.bookingSectionButton().click();
@@ -49,7 +49,7 @@ test.describe('Test coverage for the found bugs', () => {
     });
 
     test.fail('footer links lead to correct destinations', async ({ page }) => {
-        // BUG #3: Footer links are broken
+        // BUG #4: Footer links are broken
         await home.footerLink('Home').click();
         await expect(page).toHaveURL(/#/);
 

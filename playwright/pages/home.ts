@@ -50,7 +50,7 @@ export class HomePage {
         return this.roomsSection().locator('h5.card-title').first();
     }
     bookNowButton() {
-        return this.page.getByRole('link', { name: 'Book now' });
+        return this.page.getByRole('link', { name: 'Book this room' });
     }
     contactSection() {
         return this.page.locator('#contact');
