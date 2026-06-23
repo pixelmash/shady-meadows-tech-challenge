@@ -5,3 +5,9 @@ playwright/test-results/
 playwright/playwright-report/
 
 .DS_Store
+
+*.class
+*.jar
+*.war
+.vscode/
+*.log

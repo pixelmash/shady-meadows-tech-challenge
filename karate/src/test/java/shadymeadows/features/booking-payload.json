@@ -1,0 +1,11 @@
+{
+    "roomid": "##(targetRoomId)",
+    "firstname": "##(testData.firstname)",
+    "lastname": "##(testData.lastname)",
+    "totalprice": "##(testData.totalprice)",
+    "depositpaid": "##(testData.depositpaid)",
+    "bookingdates": {
+        "checkin": "##(testData.bookingdates.checkin)",
+        "checkout": "##(testData.bookingdates.checkout)"
+    }
+}
